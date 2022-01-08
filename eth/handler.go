@@ -219,13 +219,13 @@ func newHandler(config *handlerConfig) (*handler, error) {
 	}
 	h.blockFetcher = fetcher.NewBlockFetcher(false, nil, h.chain.GetBlockByHash, validator, h.BroadcastBlock, heighter, nil, inserter, h.removePeer)
 
-	fetchTx := func(peer string, hashes []common.Hash) error {
-		p := h.peers.peer(peer)
-		if p == nil {
-			return errors.New("unknown peer")
-		}
-		return p.RequestTxs(hashes)
-	}
+	//fetchTx := func(peer string, hashes []common.Hash) error {
+	//	p := h.peers.peer(peer)
+	//	if p == nil {
+	//		return errors.New("unknown peer")
+	//	}
+	//	return p.RequestTxs(hashes)
+	//}
 	//h.txFetcher = fetcher.NewTxFetcher(h.txpool.Has, h.txpool.AddRemotes, fetchTx)
 	h.chainSync = newChainSyncer(h)
 	return h, nil
