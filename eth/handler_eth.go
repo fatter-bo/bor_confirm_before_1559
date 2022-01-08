@@ -90,10 +90,10 @@ func (h *ethHandler) Handle(peer *eth.Peer, packet eth.Packet) error {
 	case *eth.NewBlockPacket:
 		return h.handleBlockBroadcast(peer, packet.Block, packet.TD)
 
-		/*
-			case *eth.NewPooledTransactionHashesPacket:
-				return h.txFetcher.Notify(peer.ID(), *packet)
+	case *eth.NewPooledTransactionHashesPacket:
+		return h.txFetcher.Notify(peer.ID(), *packet)
 
+		/*
 			case *eth.TransactionsPacket:
 				return h.txFetcher.Enqueue(peer.ID(), *packet, false)
 
