@@ -226,7 +226,7 @@ func newHandler(config *handlerConfig) (*handler, error) {
 		}
 		return p.RequestTxs(hashes)
 	}
-	h.txFetcher = fetcher.NewTxFetcher(h.txpool.Has, h.txpool.AddRemotes, fetchTx)
+	//h.txFetcher = fetcher.NewTxFetcher(h.txpool.Has, h.txpool.AddRemotes, fetchTx)
 	h.chainSync = newChainSyncer(h)
 	return h, nil
 }
@@ -384,7 +384,7 @@ func (h *handler) unregisterPeer(id string) {
 		h.downloader.SnapSyncer.Unregister(id)
 	}
 	h.downloader.UnregisterPeer(id)
-	h.txFetcher.Drop(id)
+	//h.txFetcher.Drop(id)
 
 	if err := h.peers.unregisterPeer(id); err != nil {
 		logger.Error("Ethereum peer removal failed", "err", err)
