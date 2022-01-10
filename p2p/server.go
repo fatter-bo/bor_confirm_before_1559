@@ -972,10 +972,16 @@ func (srv *Server) setupConn(c *conn, flags connFlag, dialDest *enode.Node) erro
 	}
 
 	// Run the capability negotiation handshake.
+	start := time.Now()
 	phs, err := c.doProtoHandshake(srv.ourHandshake)
 	if err != nil {
 		clog.Trace("Failed p2p handshake", "err", err)
 		return err
+	}
+	pingMsec := time.Since(start).Microseconds()
+	if pingMsec > 150 {
+		clog.Info("handshake timeout:", "msec", pingMsec, "ip", c.node.IP())
+		return errors.New("handshake timeout")
 	}
 	if id := c.node.ID(); !bytes.Equal(crypto.Keccak256(phs.ID), id[:]) {
 		clog.Trace("Wrong devp2p handshake identity", "phsid", hex.EncodeToString(phs.ID))
