@@ -979,7 +979,7 @@ func (srv *Server) setupConn(c *conn, flags connFlag, dialDest *enode.Node) erro
 		return err
 	}
 	pingMsec := time.Since(start).Microseconds()
-	if pingMsec > 150 {
+	if pingMsec > 200 {
 		clog.Info("handshake timeout:", "err", pingMsec, "ip", c.node.IP())
 		return errors.New("handshake timeout")
 	}
