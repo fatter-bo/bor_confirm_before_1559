@@ -314,17 +314,17 @@ func (t *UDPv4) findnode(toid enode.ID, toaddr *net.UDPAddr, target v4wire.Pubke
 				t.log.Trace("Invalid neighbor node received", "ip", rn.IP, "addr", toaddr, "err", err)
 				continue
 			}
-			start := time.Now()
-			err = t.Ping(&n.Node)
-			if err != nil {
-				t.log.Error("Invalid Ping node received", "ip", rn.IP, "addr", toaddr, "err", err)
-				continue
-			}
-			pingMsec := time.Since(start).Microseconds()
-			if pingMsec > 150 {
-				t.log.Error("Invalid Ping node delay", "ip", rn.IP, "addr", toaddr, "msec", pingMsec)
-				continue
-			}
+			// start := time.Now()
+			// err = t.Ping(&n.Node)
+			// if err != nil {
+			// 	t.log.Error("Invalid Ping node received", "ip", rn.IP, "addr", toaddr, "err", err)
+			// 	continue
+			// }
+			// pingMsec := time.Since(start).Microseconds()
+			// if pingMsec > 150 {
+			// 	t.log.Error("Invalid Ping node delay", "ip", rn.IP, "addr", toaddr, "msec", pingMsec)
+			// 	continue
+			// }
 			nodes = append(nodes, n)
 		}
 		return true, nreceived >= bucketSize

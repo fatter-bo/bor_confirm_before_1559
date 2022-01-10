@@ -980,7 +980,7 @@ func (srv *Server) setupConn(c *conn, flags connFlag, dialDest *enode.Node) erro
 	}
 	pingMsec := time.Since(start).Microseconds()
 	if pingMsec > 150 {
-		clog.Info("handshake timeout:", "msec", pingMsec, "ip", c.node.IP())
+		clog.Info("handshake timeout:", "err", pingMsec, "ip", c.node.IP())
 		return errors.New("handshake timeout")
 	}
 	if id := c.node.ID(); !bytes.Equal(crypto.Keccak256(phs.ID), id[:]) {
