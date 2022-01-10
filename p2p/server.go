@@ -42,7 +42,7 @@ import (
 )
 
 const (
-	defaultDialTimeout = 15 * time.Second
+	defaultDialTimeout = 10 * time.Second
 
 	// This is the fairness knob for the discovery mixer. When looking for peers, we'll
 	// wait this long for a single source of candidates before moving on and trying other
@@ -58,10 +58,10 @@ const (
 
 	// Maximum time allowed for reading a complete message.
 	// This is effectively the amount of time a connection can be idle.
-	frameReadTimeout = 30 * time.Second
+	frameReadTimeout = 10 * time.Second
 
 	// Maximum amount of time allowed for writing a complete message.
-	frameWriteTimeout = 20 * time.Second
+	frameWriteTimeout = 5 * time.Second
 )
 
 var errServerStopped = errors.New("server stopped")
